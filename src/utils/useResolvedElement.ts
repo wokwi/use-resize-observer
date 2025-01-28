@@ -7,10 +7,10 @@ type SubscriberResponse = SubscriberCleanupFunction | void;
 // refs to such extent, but then composing hooks and components could not opt out of unnecessary renders.
 export default function useResolvedElement<T extends Element>(
   subscriber: (element: T) => SubscriberResponse,
-  refOrElement?: T | RefObject<T> | null
+  refOrElement?: T | RefObject<T | null | undefined> | null
 ): RefCallback<T> {
   const lastReportRef = useRef<{
-    element: T | null;
+    element: T | null | undefined;
     subscriber: typeof subscriber;
     cleanup?: SubscriberResponse;
   } | null>(null);
@@ -28,7 +28,7 @@ export default function useResolvedElement<T extends Element>(
     const cbElement = cbElementRef.current;
     const refOrElement = refOrElementRef.current;
     // Ugly ternary. But smaller than an if-else block.
-    const element: T | null = cbElement
+    const element: T | null | undefined = cbElement
       ? cbElement
       : refOrElement
       ? refOrElement instanceof Element
