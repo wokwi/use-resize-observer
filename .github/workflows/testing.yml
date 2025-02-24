@@ -7,6 +7,9 @@ on:
 jobs:
   testing:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        react-version: [18, 19]
     env:
       BS_ACCESS_KEY: ${{ secrets.BS_ACCESS_KEY }}
       BS_USERNAME: ${{ secrets.BS_USERNAME }}
@@ -20,6 +23,8 @@ jobs:
           node-version: 14
       - name: Installing Dependencies
         run: yarn install --frozen-lockfile
+      - name: Install React ${{ matrix.react-version }}
+        run: yarn add react@${{ matrix.react-version }} react-dom@${{ matrix.react-version }} --dev
       - name: Checking File Size
         run: yarn check:size
       - name: Checking Linting Rules
