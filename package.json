@@ -27,7 +27,7 @@
     "resize"
   ],
   "scripts": {
-    "build": "rollup -c && tsc && rm -rf dist/utils && cp dist/index.d.ts polyfilled.d.ts",
+    "build": "rollup -c && tsc && rimraf dist/utils && cpy dist/index.d.ts . --rename=polyfilled.d.ts",
     "watch": "KARMA_BROWSERS=Chrome run-p 'src:watch' 'karma:watch'",
     "src:watch": "rollup -c -w",
     "check:size": "size-limit",
@@ -100,6 +100,7 @@
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
     "babel-loader": "^8.1.0",
+    "cpy-cli": "^5.0.0",
     "delay": "^5.0.0",
     "eslint": "^8.17.0",
     "eslint-plugin-react-hooks": "^4.5.0",
@@ -120,6 +121,7 @@
     "react": "^19.0.0",
     "react-app-polyfill": "^3.0.0",
     "react-dom": "^19.0.0",
+    "rimraf": "^6.0.1",
     "rollup": "^2.6.1",
     "semantic-release": "^19.0.3",
     "size-limit": "^5.0.1",
