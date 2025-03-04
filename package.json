@@ -27,7 +27,7 @@
     "resize"
   ],
   "scripts": {
-    "build": "rollup -c && tsc && rimraf dist/utils && cpy dist/index.d.ts . --rename=polyfilled.d.ts",
+    "build": "rollup -c && tsc && rimraf dist/utils && cpy dist/index.d.ts . --rename=../polyfilled.d.ts",
     "watch": "KARMA_BROWSERS=Chrome run-p 'src:watch' 'karma:watch'",
     "src:watch": "rollup -c -w",
     "check:size": "size-limit",
